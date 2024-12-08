@@ -9,7 +9,7 @@ body {
 
 .container {
     width: 90%;
-    max-width: 500px;
+    max-width: 400px;
     margin: 50px auto;
     background: white;
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
@@ -25,6 +25,8 @@ h1 {
 
 label {
     font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
 }
 
 select, input, button {
@@ -50,4 +52,8 @@ button:hover {
 
 .qr-container {
     margin-top: 20px;
+    padding: 10px;
+    border: 1px dashed #ccc;
+    border-radius: 8px;
+    background: #fafafa;
 }
