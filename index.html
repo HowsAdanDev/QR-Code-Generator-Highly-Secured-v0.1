@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Professional QR Code Generator</title>
+    <title>QR Code Generator</title>
     <link rel="stylesheet" href="style.css">
     <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
 </head>
@@ -19,16 +19,14 @@
                 <option value="payment">Payment Info</option>
             </select>
 
-            <div id="additionalInput">
-                <input type="text" id="inputValue" placeholder="Enter your value" required>
-            </div>
+            <input type="text" id="inputValue" placeholder="Enter your value" required>
 
             <button type="submit">Generate QR Code</button>
         </form>
 
         <div class="qr-container" id="qrContainer" style="display: none;">
             <h2>Your QR Code</h2>
-            <div id="qrCode"></div>
+            <canvas id="qrCodeCanvas"></canvas>
         </div>
     </div>
     <script src="script.js"></script>
