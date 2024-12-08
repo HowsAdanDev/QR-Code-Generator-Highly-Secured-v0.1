@@ -18,20 +18,20 @@ document.getElementById("qrForm").addEventListener("submit", function (event) {
         qrData = `upi://pay?pa=${inputValue}&pn=User&mc=0000&mode=02&purpose=00`;
     }
 
-    // Append custom warning message to QR data
-    qrData += `
-    \nNot Reliable Source: Scan with Google Camera, official mobile apps, or supported payment apps.`;
-
     // Clear previous QR code
     qrCodeDiv.innerHTML = "";
 
-    // Generate QR Code
+    // Generate QR Code and ensure it is displayed
     QRCode.toCanvas(qrCodeDiv, qrData, {
-        width: 200,
-        margin: 2,
+        width: 200, // Adjust the size of the QR code
+        margin: 2,  // Add margin around the QR code
     }, function (error) {
-        if (error) console.error(error);
+        if (error) {
+            console.error("QR Code generation failed:", error);
+            alert("Failed to generate QR Code. Please try again.");
+            return;
+        }
+        // Show the QR container once the QR code is generated successfully
+        qrContainer.style.display = "block";
     });
-
-    qrContainer.style.display = "block";
 });
