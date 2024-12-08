@@ -18,6 +18,10 @@ document.getElementById("qrForm").addEventListener("submit", function (event) {
         qrData = `upi://pay?pa=${inputValue}&pn=User&mc=0000&mode=02&purpose=00`;
     }
 
+    // Append custom warning message to QR data
+    qrData += `
+    \nNot Reliable Source: Scan with Google Camera, official mobile apps, or supported payment apps.`;
+
     // Clear previous QR code
     qrCodeDiv.innerHTML = "";
 
