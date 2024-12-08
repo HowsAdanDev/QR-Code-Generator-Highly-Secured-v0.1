@@ -1,37 +1,35 @@
 document.getElementById("qrForm").addEventListener("submit", function (event) {
     event.preventDefault();
+
     const inputType = document.getElementById("inputType").value;
-    const inputValue = document.getElementById("inputValue").value;
+    const inputValue = document.getElementById("inputValue").value.trim();
     const qrContainer = document.getElementById("qrContainer");
-    const qrCodeDiv = document.getElementById("qrCode");
+    const qrCanvas = document.getElementById("qrCodeCanvas");
 
+    if (!inputValue) {
+        alert("Please enter a value to generate a QR Code.");
+        return;
+    }
+
+    // Generate the QR data
     let qrData = "";
-
-    // Handle QR Code data based on input type
     if (inputType === "mobile") {
         qrData = `tel:${inputValue}`;
     } else if (inputType === "link") {
-        qrData = inputValue;
+        qrData = inputValue.startsWith("http") ? inputValue : `https://${inputValue}`;
     } else if (inputType === "text") {
         qrData = inputValue;
     } else if (inputType === "payment") {
         qrData = `upi://pay?pa=${inputValue}&pn=User&mc=0000&mode=02&purpose=00`;
     }
 
-    // Clear previous QR code
-    qrCodeDiv.innerHTML = "";
-
-    // Generate QR Code and ensure it is displayed
-    QRCode.toCanvas(qrCodeDiv, qrData, {
-        width: 200, // Adjust the size of the QR code
-        margin: 2,  // Add margin around the QR code
-    }, function (error) {
+    // Clear the previous QR code
+    QRCode.toCanvas(qrCanvas, qrData, { width: 200, margin: 2 }, function (error) {
         if (error) {
-            console.error("QR Code generation failed:", error);
-            alert("Failed to generate QR Code. Please try again.");
-            return;
+            console.error("Error generating QR Code:", error);
+            alert("Could not generate QR Code. Please try again.");
+        } else {
+            qrContainer.style.display = "block";
         }
-        // Show the QR container once the QR code is generated successfully
-        qrContainer.style.display = "block";
     });
 });
