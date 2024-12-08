@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Professional QR Code Generator</title>
+    <link rel="stylesheet" href="style.css">
+    <script src="https://cdn.jsdelivr.net/npm/qrcode/build/qrcode.min.js"></script>
+</head>
+<body>
+    <div class="container">
+        <h1>Professional QR Code Generator</h1>
+        <form id="qrForm">
+            <label for="inputType">Select Input Type:</label>
+            <select id="inputType" required>
+                <option value="text">Text</option>
+                <option value="link">Link</option>
+                <option value="mobile">Mobile Number</option>
+                <option value="payment">Payment Info</option>
+            </select>
+
+            <div id="additionalInput">
+                <input type="text" id="inputValue" placeholder="Enter your value" required>
+            </div>
+
+            <button type="submit">Generate QR Code</button>
+        </form>
+
+        <div class="qr-container" id="qrContainer" style="display: none;">
+            <h2>Your QR Code</h2>
+            <div id="qrCode"></div>
+            <p class="warning">
+                If scanned with a third-party app, it will display: <br>
+                <strong>"Not Reliable Source: Scan with Google Camera, official mobile apps, or supported payment apps."</strong>
+            </p>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>
